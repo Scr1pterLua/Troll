@@ -1,0 +1,139 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local IpCheat = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextBox = Instance.new("TextBox")
+local TextButton = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local UIGradient = Instance.new("UIGradient")
+
+--Properties:
+
+IpCheat.Name = "Ip Cheat"
+IpCheat.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+IpCheat.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+IpCheat.DisplayOrder = 2147483647
+
+Frame.Parent = IpCheat
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.482166439, 0, 0.447761208, 0)
+Frame.Size = UDim2.new(0, 300, 0, 300)
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.166666672, 0, 0.166666672, 0)
+TextBox.Size = UDim2.new(0, 200, 0, 50)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.PlaceholderText = "Name"
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextScaled = true
+TextBox.TextSize = 14.000
+TextBox.TextWrapped = true
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.166666672, 0, 0.540000021, 0)
+TextButton.Size = UDim2.new(0, 200, 0, 50)
+TextButton.Font = Enum.Font.FredokaOne
+TextButton.Text = "Fake Ip Leak"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+
+UICorner.Parent = Frame
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(120, 120, 120)), ColorSequenceKeypoint.new(0.99, Color3.fromRGB(90, 90, 90)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(171, 171, 171))}
+UIGradient.Rotation = -86
+UIGradient.Parent = Frame
+
+-- Scripts:
+
+local function VMUHH_fake_script() -- Frame.LocalScript 
+	local script = Instance.new('LocalScript', Frame)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	local gui = script.Parent
+	
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+	
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+	
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+			
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+	
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(VMUHH_fake_script)()
+local function BJWWR_fake_script() -- Frame.ete 
+	local script = Instance.new('LocalScript', Frame)
+
+	
+	script.Parent.TextButton.MouseButton1Down:Connect(function()
+		local player = script.Parent.TextBox.Text
+		local randomnumber1 = math.random(50,400)
+		local randomnumber2 = math.random(50,400)
+		local randomnumber3 = math.random(50,400)
+		local randomnumber4 = math.random(50,400)
+		local stringer = randomnumber1.."."..randomnumber2.."."..randomnumber3.."."..randomnumber4
+		local iper = game:GetService("LocalizationService")
+		local msg = game:GetService("Chat")
+		msg:Chat(game.Players.LocalPlayer.Character.Head,"Hacking Data..")
+		wait(0.5)
+		msg:Chat(game.Players.LocalPlayer.Character.Head,"Bypassing Vpn...")
+		wait(2)
+		msg:Chat(game.Players.LocalPlayer.Character.Head,"Getting Country: ")
+		wait(0.1)
+		msg:Chat(game.Players.LocalPlayer.Character.Head,iper:GetCountryRegionForPlayerAsync(game.Players[player]))
+		wait(2)
+		msg:Chat(game.Players.LocalPlayer.Character.Head,"Getting Ip: ")
+		wait(0.1)
+		msg:Chat(game.Players.LocalPlayer.Character.Head,tostring(stringer))
+		wait(0.3)
+		msg:Chat(game.Players.LocalPlayer.Character.Head,"Saved Data in webhook.")
+		wait(0.3)
+		msg:Chat(game.Players.LocalPlayer.Character.Head,"[IP STEALER] V2")
+		
+	end)
+	
+end
+coroutine.wrap(BJWWR_fake_script)()
